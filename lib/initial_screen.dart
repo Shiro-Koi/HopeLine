@@ -8,7 +8,6 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text('HopeLine')),
       body: Container(
         alignment: Alignment.center,
         child: Center(

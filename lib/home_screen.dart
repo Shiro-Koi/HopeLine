@@ -1,7 +1,3 @@
-// home screen with two options, immediate help or call for help
-// immediate help will use immeiate_help.dart screen
-// call for help will use call_help.dart screen
-
 import 'package:flutter/material.dart';
 import 'package:hope_line/immediate_help.dart';
 import 'package:hope_line/call_help.dart';
@@ -28,23 +24,94 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // app bar button to reset the saved data (from full_data.json and lite_data.json)
       appBar: AppBar(
         title: const Text('HopeLine'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // button to navigate to the immediate help screen
-            ElevatedButton(
-              onPressed: () => navigateToImmediateHelp(context),
-              child: const Text('Immediate Help'),
+            // const SizedBox(height:),
+            Center(
+              child: SizedBox(
+                height: 100,
+                width: 240,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ImmediateHelp()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/immediate_icon.png',
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 10),
+                      const Text(
+                        'Immediate Help',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            // button to navigate to the call for help screen
-            ElevatedButton(
-              onPressed: () => navigateToCallHelp(context),
-              child: const Text('Call for Help'),
+            const SizedBox(height: 55),
+            Center(
+              child: SizedBox(
+                height: 100,
+                width: 240,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CallHelp()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/call_icon.png',
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 10),
+                      const Text(
+                        'Call for Help',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
