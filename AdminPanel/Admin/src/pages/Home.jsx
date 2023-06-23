@@ -4,7 +4,7 @@ import { Note, ComponentA } from "../Components/Note";
 
 const Home = () => {
   return (
-    <div className="flex items-center justify-center flex-col bg-bg-main pt-10 m-0 p-0">
+    <div className="flex items-center justify-center flex-col bg-bg-third pt-10 m-0 p-0 text-blue-500">
       <h1 className="m-5 text-4xl">Map</h1>
       <div className="flex ">
         <Mapbox className="grow" />

@@ -23,7 +23,7 @@ const Note = () => {
   const { array, setArray } = useSharedFormState();
 
   return (
-    <div className="bg-bg-main w-1/3 h-full mx-5 flex flex-col items-start ">
+    <div className="bg-bg-third w-1/3 h-full mx-5 flex flex-col items-start ">
       <label
         htmlFor="noteTitle"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
