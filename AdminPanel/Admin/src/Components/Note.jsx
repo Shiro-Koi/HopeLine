@@ -1,10 +1,26 @@
 import React from "react";
 import { useState } from "react";
+import { useBetween } from "use-between";
 
-const Note = () => {
-  const [array, setArray] = useState([{ title: "", detail: "" }]);
+const useFormState = () => {
+  const [array, setArray] = useState([]);
   const [noteTitle, setNoteTitle] = useState(" ");
   const [noteDetails, setNoteDetails] = useState(" ");
+  return {
+    array,
+    setArray,
+    noteTitle,
+    setNoteTitle,
+    noteDetails,
+    setNoteDetails,
+  };
+};
+const useSharedFormState = () => useBetween(useFormState);
+
+const Note = () => {
+  const { noteTitle, setNoteTitle } = useSharedFormState();
+  const { noteDetails, setNoteDetails } = useSharedFormState();
+  const { array, setArray } = useSharedFormState();
 
   return (
     <div className="bg-bg-main w-1/3 h-full mx-5 flex flex-col items-start ">
@@ -43,16 +59,34 @@ const Note = () => {
       >
         Submit
       </button>
-
-      {array.map((item, index) => (
-        <>
-          <h1 key={index}>{item.noteTitle}</h1>
-          {console.log(item)}
-          <p>{item.noteDetails}</p>
-        </>
-      ))}
     </div>
   );
 };
 
-export default Note;
+const ComponentA = () => {
+  // Use the shared hook!
+
+  const { array } = useSharedFormState();
+  return array.map((item, index) => (
+    <div
+      key={index}
+      className="bg-bg-secondary w-[250px] p-5 h-[40vh] rounded-xl text-black m-5  shadow-xl shadow-black "
+    >
+      <h1
+        key={index}
+        className=" border-b-4 p-2 text-opacity-50 text-slate-500 "
+      >
+        {item.noteTitle}
+      </h1>
+      <div className="flex flex-col justify-between h-full p-1">
+        <p className="p-1">{item.noteDetails}</p>
+        <h4 className="text-sm p-1 mb-[30px] self-center">
+          `{new Date().getDate()}/{new Date().getMonth() + 1}/
+          {new Date().getFullYear()}`
+        </h4>
+      </div>
+    </div>
+  ));
+};
+
+export { Note, ComponentA };
