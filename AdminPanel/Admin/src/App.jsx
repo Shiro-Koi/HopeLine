@@ -1,12 +1,14 @@
-import SharedPage from './pages/SharedPage'
-import Home from './pages/Home'
-import './App.css'
+import SharedPage from "./pages/SharedPage";
+import Home from "./pages/Home";
+import "./App.css";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
+import "mapbox-gl/dist/mapbox-gl.css";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<SharedPage />}>
