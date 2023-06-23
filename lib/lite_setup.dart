@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hope_line/initial_screen.dart';
+import 'dart:convert';
+import 'dart:io';
+// path provider
+import 'package:path_provider/path_provider.dart';
 
 class LiteSetup extends StatefulWidget {
   const LiteSetup({Key? key}) : super(key: key);
@@ -12,6 +16,7 @@ class _LiteSetupState extends State<LiteSetup> {
   String phoneNumber = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
+  final GlobalKey<State> _dialogKey = GlobalKey<State>();
 
   void updatePhoneNumber(String newPhoneNumber) {
     setState(() {
@@ -29,6 +34,62 @@ class _LiteSetupState extends State<LiteSetup> {
     setState(() {
       emergencyContact2 = newEmergencyContact2;
     });
+  }
+
+  void saveDataToJson(BuildContext context) async {
+    Map<String, dynamic> data = {
+      'phoneNumber': phoneNumber,
+      'emergencyContact1': emergencyContact1,
+      'emergencyContact2': emergencyContact2,
+    };
+
+    try {
+      Directory appDocumentsDirectory =
+          await getApplicationDocumentsDirectory();
+      String filePath = '${appDocumentsDirectory.path}/user_data.json';
+      File file = File(filePath);
+
+      if (!file.existsSync()) {
+        file.createSync(recursive: true);
+      }
+
+      file.writeAsStringSync(jsonEncode(data));
+      showDialog(
+        context: _dialogKey.currentContext!,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            title: Text('Data Saved'),
+            content: Text('User data has been saved to user_data.json'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to save user data. Error: $e'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   void navigateToInitialScreen() {
@@ -106,17 +167,23 @@ class _LiteSetupState extends State<LiteSetup> {
             Container(
               width: 200,
               height: 60,
-              child: ElevatedButton(
-                onPressed: navigateToInitialScreen,
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: Text(
-                  'Submit',
-                  style: TextStyle(fontSize: 20),
-                ),
+              child: Builder(
+                builder: (BuildContext buttonContext) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      saveDataToJson(buttonContext);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  );
+                },
               ),
             ),
           ],
