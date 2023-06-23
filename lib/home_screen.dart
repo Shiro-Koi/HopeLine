@@ -26,7 +26,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // app bar button to reset the saved data (from full_data.json and lite_data.json)
       appBar: AppBar(
-        title: const Text('HopeLine'),
+        title: const Text('Be Safe~', style: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),),
         actions: <Widget>[
           IconButton(
             onPressed: () {},
@@ -43,6 +46,7 @@ class HomeScreen extends StatelessWidget {
               child: SizedBox(
                 height: 100,
                 width: 240,
+                //set button color to navy
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -55,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                  ),
+                    backgroundColor: Color.fromARGB(255, 218, 20, 20)              ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -75,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 55),
+            const SizedBox(height: 110),
             Center(
               child: SizedBox(
                 height: 100,
@@ -91,6 +95,7 @@ class HomeScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
+                    backgroundColor: Color.fromARGB(255, 26, 226, 79)
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 100),
           ],
         ),
       ),
