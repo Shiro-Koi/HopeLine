@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:hope_line/initial_screen.dart';
-import 'package:hope_line/lite_setup.dart';
-import 'package:hope_line/full_setup.dart';
 
 void main() {
   runApp(const HopeLine());
