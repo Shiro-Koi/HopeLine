@@ -15,20 +15,20 @@ class InitialScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'HopeLine',
                 style: TextStyle(
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Image.asset(
                 'images/initial_screen_icon.png',
                 height: 150,
                 width: 150,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 width: 200,
@@ -51,7 +51,7 @@ class InitialScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 width: 200,

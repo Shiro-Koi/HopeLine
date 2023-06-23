@@ -81,24 +81,24 @@ class _FullSetupState extends State<FullSetup> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Full Setup',
                 style: TextStyle(
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Image.asset(
                 'images/full_setup_icon.png',
                 height: 150,
                 width: 150,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Name',
                 ),
@@ -107,12 +107,12 @@ class _FullSetupState extends State<FullSetup> {
                 },
               ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
                 ),
@@ -121,11 +121,11 @@ class _FullSetupState extends State<FullSetup> {
                 },
               ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Phone Number',
                 ),
@@ -134,12 +134,12 @@ class _FullSetupState extends State<FullSetup> {
                 },
               ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // text field to enter the first emergency contact
               SizedBox(
                 width: 300,
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Emergency Contact 1',
                   ),
@@ -148,12 +148,12 @@ class _FullSetupState extends State<FullSetup> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // text field to enter the second emergency contact
               SizedBox(
                 width: 300,
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Emergency Contact 2',
                   ),
@@ -162,8 +162,8 @@ class _FullSetupState extends State<FullSetup> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: 200,
                 height: 60,
                 child: ElevatedButton(
@@ -173,7 +173,7 @@ class _FullSetupState extends State<FullSetup> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Submit',
                     style: TextStyle(fontSize: 20),
                   ),

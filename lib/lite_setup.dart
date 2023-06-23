@@ -58,11 +58,11 @@ class _LiteSetupState extends State<LiteSetup> {
         context: _dialogKey.currentContext!,
         builder: (BuildContext dialogContext) {
           return AlertDialog(
-            title: Text('Data Saved'),
-            content: Text('User data has been saved to user_data.json'),
+            title: const Text('Data Saved'),
+            content: const Text('User data has been saved to user_data.json'),
             actions: <Widget>[
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(dialogContext).pop();
                 },
@@ -76,11 +76,11 @@ class _LiteSetupState extends State<LiteSetup> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Error'),
+            title: const Text('Error'),
             content: Text('Failed to save user data. Error: $e'),
             actions: <Widget>[
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -110,25 +110,25 @@ class _LiteSetupState extends State<LiteSetup> {
               MainAxisAlignment.start, // Align to the top of the screen
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 40), // Increased space from the top
-            Text(
+            const SizedBox(height: 40), // Increased space from the top
+            const Text(
               'Lite Setup',
               style: TextStyle(
                 fontSize: 60,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Image.asset(
               'images/lite_setup_icon.png',
               height: 150,
               width: 150,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               width: 300,
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Phone Number',
                 ),
@@ -137,11 +137,11 @@ class _LiteSetupState extends State<LiteSetup> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               width: 300,
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Emergency Contact 1',
                 ),
@@ -150,11 +150,11 @@ class _LiteSetupState extends State<LiteSetup> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               width: 300,
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Emergency Contact 2',
                 ),
@@ -163,8 +163,8 @@ class _LiteSetupState extends State<LiteSetup> {
                 },
               ),
             ),
-            SizedBox(height: 20),
-            Container(
+            const SizedBox(height: 20),
+            SizedBox(
               width: 200,
               height: 60,
               child: Builder(
@@ -178,7 +178,7 @@ class _LiteSetupState extends State<LiteSetup> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Submit',
                       style: TextStyle(fontSize: 20),
                     ),
