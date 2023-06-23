@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope_line/initial_screen.dart';
+import 'package:hope_line/home_screen.dart';
 import 'dart:convert';
 import 'dart:io';
 // path provider
@@ -17,7 +17,7 @@ class _LiteSetupState extends State<LiteSetup> {
   String emergencyContact1 = '';
   String emergencyContact2 = '';
   final GlobalKey<State> _dialogKey = GlobalKey<State>();
-  
+  bool isLoading = false;
 
   void updatePhoneNumber(String newPhoneNumber) {
     setState(() {
@@ -38,6 +38,9 @@ class _LiteSetupState extends State<LiteSetup> {
   }
 
   void saveDataToJson(BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
 
     Map<String, dynamic> data = {
       'phoneNumber': phoneNumber,
@@ -56,6 +59,10 @@ class _LiteSetupState extends State<LiteSetup> {
       }
 
       file.writeAsStringSync(jsonEncode(data));
+
+      // Show loading screen for 5 seconds
+      await Future.delayed(const Duration(seconds: 5));
+
       showDialog(
         context: _dialogKey.currentContext ?? context,
         builder: (BuildContext dialogContext) {
@@ -67,6 +74,7 @@ class _LiteSetupState extends State<LiteSetup> {
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(dialogContext).pop();
+                  navigateToHomeScreen();
                 },
               ),
             ],
@@ -91,13 +99,18 @@ class _LiteSetupState extends State<LiteSetup> {
           );
         },
       );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  void navigateToInitialScreen() {
+  // function to navigate to the home screen
+  void navigateToHomeScreen() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const InitialScreen()),
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
     );
   }
 
@@ -172,18 +185,22 @@ class _LiteSetupState extends State<LiteSetup> {
               child: Builder(
                 builder: (BuildContext buttonContext) {
                   return ElevatedButton(
-                    onPressed: () {
-                      saveDataToJson(buttonContext);
-                    },
+                    onPressed: isLoading
+                        ? null
+                        : () {
+                            saveDataToJson(buttonContext);
+                          },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(fontSize: 20),
-                    ),
+                    child: isLoading
+                        ? const CircularProgressIndicator()
+                        : const Text(
+                            'Submit',
+                            style: TextStyle(fontSize: 20),
+                          ),
                   );
                 },
               ),

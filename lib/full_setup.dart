@@ -5,6 +5,7 @@ import 'package:hope_line/initial_screen.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:hope_line/home_screen.dart';
 
 // setting up the full setup screen with a stateful widget
 // this is so that we can store the name, email, phone number, and emergency contacts
@@ -24,6 +25,7 @@ class _FullSetupState extends State<FullSetup> {
   String emergencyContact1 = '';
   String emergencyContact2 = '';
   final GlobalKey<State> _dialogKey = GlobalKey<State>();
+  bool isLoading = false;
 
   // function to update the name
   void updateName(String newName) {
@@ -69,6 +71,10 @@ class _FullSetupState extends State<FullSetup> {
   }
 
   void saveDataToJson(BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
+
     Map<String, dynamic> data = {
       'name': name,
       'email': email,
@@ -88,6 +94,10 @@ class _FullSetupState extends State<FullSetup> {
       }
 
       file.writeAsStringSync(jsonEncode(data));
+
+      // Show loading screen for 5 seconds
+      await Future.delayed(const Duration(seconds: 5));
+      
       showDialog(
         context: _dialogKey.currentContext ?? context,
         builder: (BuildContext dialogContext) {
@@ -99,6 +109,7 @@ class _FullSetupState extends State<FullSetup> {
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(dialogContext).pop();
+                  navigateToHomeScreen();
                 },
               ),
             ],
@@ -123,7 +134,19 @@ class _FullSetupState extends State<FullSetup> {
           );
         },
       );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
+  }
+
+    // function to navigate to the home screen
+  void navigateToHomeScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
+    );
   }
 
   // make the full setup screen widget using the variables and functions above
@@ -160,41 +183,41 @@ class _FullSetupState extends State<FullSetup> {
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Name',
+                  ),
+                  onChanged: (text) {
+                    updateName(text);
+                  },
                 ),
-                onChanged: (text) {
-                  updateName(text);
-                },
-              ),
               ),
               const SizedBox(height: 20),
-              
+
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                  onChanged: (text) {
+                    updateEmail(text);
+                  },
                 ),
-                onChanged: (text) {
-                  updateEmail(text);
-                },
-              ),
               ),
               const SizedBox(height: 20),
               SizedBox(
                 width: 300,
                 child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Phone Number',
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Phone Number',
+                  ),
+                  onChanged: (text) {
+                    updatePhoneNumber(text);
+                  },
                 ),
-                onChanged: (text) {
-                  updatePhoneNumber(text);
-                },
-              ),
               ),
               const SizedBox(height: 20),
               // text field to enter the first emergency contact
@@ -230,18 +253,22 @@ class _FullSetupState extends State<FullSetup> {
                 child: Builder(
                   builder: (BuildContext buttonContext) {
                     return ElevatedButton(
-                      onPressed: () {
-                        saveDataToJson(buttonContext);
-                      },
+                      onPressed: isLoading
+                          ? null
+                          : () {
+                              saveDataToJson(buttonContext);
+                            },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(fontSize: 20),
-                      ),
+                      child: isLoading
+                          ? const CircularProgressIndicator()
+                          : const Text(
+                              'Submit',
+                              style: TextStyle(fontSize: 20),
+                            ),
                     );
                   },
                 ),
