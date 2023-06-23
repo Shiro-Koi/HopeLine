@@ -17,6 +17,7 @@ class _LiteSetupState extends State<LiteSetup> {
   String emergencyContact1 = '';
   String emergencyContact2 = '';
   final GlobalKey<State> _dialogKey = GlobalKey<State>();
+  
 
   void updatePhoneNumber(String newPhoneNumber) {
     setState(() {
@@ -37,6 +38,7 @@ class _LiteSetupState extends State<LiteSetup> {
   }
 
   void saveDataToJson(BuildContext context) async {
+
     Map<String, dynamic> data = {
       'phoneNumber': phoneNumber,
       'emergencyContact1': emergencyContact1,
@@ -46,7 +48,7 @@ class _LiteSetupState extends State<LiteSetup> {
     try {
       Directory appDocumentsDirectory =
           await getApplicationDocumentsDirectory();
-      String filePath = '${appDocumentsDirectory.path}/user_data.json';
+      String filePath = '${appDocumentsDirectory.path}/lite_data.json';
       File file = File(filePath);
 
       if (!file.existsSync()) {
@@ -55,11 +57,11 @@ class _LiteSetupState extends State<LiteSetup> {
 
       file.writeAsStringSync(jsonEncode(data));
       showDialog(
-        context: _dialogKey.currentContext!,
+        context: _dialogKey.currentContext ?? context,
         builder: (BuildContext dialogContext) {
           return AlertDialog(
             title: const Text('Data Saved'),
-            content: const Text('User data has been saved to user_data.json'),
+            content: const Text('User data has been saved to lite_data.json'),
             actions: <Widget>[
               TextButton(
                 child: const Text('OK'),

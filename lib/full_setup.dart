@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hope_line/initial_screen.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 // setting up the full setup screen with a stateful widget
 // this is so that we can store the name, email, phone number, and emergency contacts
@@ -20,6 +23,7 @@ class _FullSetupState extends State<FullSetup> {
   String phoneNumber = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
+  final GlobalKey<State> _dialogKey = GlobalKey<State>();
 
   // function to update the name
   void updateName(String newName) {
@@ -62,6 +66,64 @@ class _FullSetupState extends State<FullSetup> {
       context,
       MaterialPageRoute(builder: (context) => const InitialScreen()),
     );
+  }
+
+  void saveDataToJson(BuildContext context) async {
+    Map<String, dynamic> data = {
+      'name': name,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'emergencyContact1': emergencyContact1,
+      'emergencyContact2': emergencyContact2,
+    };
+
+    try {
+      Directory appDocumentsDirectory =
+          await getApplicationDocumentsDirectory();
+      String filePath = '${appDocumentsDirectory.path}/full_data.json';
+      File file = File(filePath);
+
+      if (!file.existsSync()) {
+        file.createSync(recursive: true);
+      }
+
+      file.writeAsStringSync(jsonEncode(data));
+      showDialog(
+        context: _dialogKey.currentContext ?? context,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            title: const Text('Data Saved'),
+            content: const Text('User data has been saved to full_data.json'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: Text('Failed to save user data. Error: $e'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   // make the full setup screen widget using the variables and functions above
@@ -162,21 +224,26 @@ class _FullSetupState extends State<FullSetup> {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
               SizedBox(
                 width: 200,
                 height: 60,
-                child: ElevatedButton(
-                  onPressed: navigateToInitialScreen,
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                child: Builder(
+                  builder: (BuildContext buttonContext) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        saveDataToJson(buttonContext);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Text(
+                        'Submit',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
