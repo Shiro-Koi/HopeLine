@@ -8,27 +8,26 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text('HopeLine')),
       body: Container(
         alignment: Alignment.center,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'HopeLine',
                 style: TextStyle(
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Image.asset(
                 'images/initial_screen_icon.png',
                 height: 150,
                 width: 150,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 width: 200,
@@ -51,7 +50,7 @@ class InitialScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 width: 200,
