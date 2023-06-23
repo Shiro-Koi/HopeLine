@@ -3,13 +3,9 @@ import Mapbox from "../Components/Mapbox";
 
 const Home = () => {
   return (
-    <div className="">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quae
-      adipisci? Illum obcaecati et, facere quam perferendis odio provident
-      assumenda rerum vel, ullam beatae quas. Mollitia odio magnam architecto
-      perspiciatis?
+    <div className="flex items-center justify-center flex-col bg-bg-main h-[80vh] m-0 p-0">
       <Mapbox />
-      <div className="text-4xl">slaw</div>
+      <div className="text-4xl"></div>
     </div>
   );
 };
