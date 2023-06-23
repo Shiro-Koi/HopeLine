@@ -3,8 +3,13 @@ import 'package:hope_line/initial_screen.dart';
 import 'package:hope_line/home_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const HopeLine());
 }
 
