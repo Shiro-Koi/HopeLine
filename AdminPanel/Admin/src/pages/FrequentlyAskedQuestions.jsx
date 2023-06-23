@@ -3,7 +3,9 @@ import React from "react";
 const FrequentlyAskedQuestions = () => {
   return (
     <div>
-      <h1 className="p-5">Frequently Asked Questions:</h1>
+      <h1 className="p-5 text-blue-500 text-2xl">
+        Frequently Asked Questions:
+      </h1>
       <div className="flex justify-center items-center w-full ">
         <p className="p-5 w-1/2">
           <b>What is the purpose of this website?</b> <br /> The purpose of this
