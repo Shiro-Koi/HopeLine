@@ -49,17 +49,37 @@ class _LiteSetupState extends State<LiteSetup> {
     );
   }
 
+  // make the full setup screen widget using the variables and functions above
+  // this is the widget that will be displayed on the screen
+  // it is a column with five text fields and a button
+  // the text fields are for the phone number and two emergency contacts
+  // the button is to navigate to the initial screen
+  // the text fields are stateful widgets so that we can store the values
+  // the button is a stateless widget because it does not need to store any values
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lite Setup')),
+      appBar: AppBar(),
       body: Container(
         alignment: Alignment.center,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // text field to enter the phone number
+              Text(
+                'Lite Setup',
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20),
+              Image.asset(
+                'images/lite_setup_icon.png',
+                height: 150,
+                width: 150,
+              ),
+              SizedBox(height: 20),
               SizedBox(
                 width: 300,
                 child: TextField(
@@ -101,13 +121,20 @@ class _LiteSetupState extends State<LiteSetup> {
                 ),
               ),
               SizedBox(height: 20),
-              // button to navigate to the initial screen
-              SizedBox(
-                height: 60,
+              Container(
                 width: 200,
+                height: 60,
                 child: ElevatedButton(
                   onPressed: navigateToInitialScreen,
-                  child: const Text('Submit'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
             ],

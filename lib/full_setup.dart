@@ -74,7 +74,7 @@ class _FullSetupState extends State<FullSetup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('HopeLine')),
+      appBar: AppBar(),
       body: Container(
         alignment: Alignment.center,
         child: Center(
@@ -95,7 +95,9 @@ class _FullSetupState extends State<FullSetup> {
                 width: 150,
               ),
               SizedBox(height: 20),
-              TextField(
+              SizedBox(
+                width: 300,
+                child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Name',
@@ -104,9 +106,12 @@ class _FullSetupState extends State<FullSetup> {
                   updateName(text);
                 },
               ),
+              ),
               SizedBox(height: 20),
               
-              TextField(
+              SizedBox(
+                width: 300,
+                child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
@@ -115,8 +120,11 @@ class _FullSetupState extends State<FullSetup> {
                   updateEmail(text);
                 },
               ),
+              ),
               SizedBox(height: 20),
-              TextField(
+              SizedBox(
+                width: 300,
+                child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Phone Number',
@@ -124,6 +132,7 @@ class _FullSetupState extends State<FullSetup> {
                 onChanged: (text) {
                   updatePhoneNumber(text);
                 },
+              ),
               ),
               SizedBox(height: 20),
               // text field to enter the first emergency contact
@@ -154,9 +163,21 @@ class _FullSetupState extends State<FullSetup> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: navigateToInitialScreen,
-                child: const Text('Submit'),
+              Container(
+                width: 200,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: navigateToInitialScreen,
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
             ],
           ),
