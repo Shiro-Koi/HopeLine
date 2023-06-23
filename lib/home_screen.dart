@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   void navigateToImmediateHelp(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ImmediateHelp()),
+      MaterialPageRoute(builder: (context) =>  ImmediateHelp()),
     );
   }
 
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ImmediateHelp()),
+                          builder: (context) =>  ImmediateHelp()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
