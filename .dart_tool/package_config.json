@@ -30,7 +30,6 @@
       "rootUri": "file:///Users/nini/.pub-cache/hosted/pub.dev/collection-1.17.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
-=======
     },
     {
       "name": "crypto",
@@ -67,7 +66,6 @@
       "rootUri": "file:///opt/homebrew/Caskroom/flutter/3.3.7/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-=======
     },
     {
       "name": "flutter_isolate",
@@ -92,7 +90,6 @@
       "rootUri": "file:///opt/homebrew/Caskroom/flutter/3.3.7/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-=======
     },
     {
       "name": "http",
@@ -117,7 +114,6 @@
       "rootUri": "file:///Users/nini/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
-=======
     },
     {
       "name": "latlong2",
@@ -152,7 +148,6 @@
     {
       "name": "meta",
       "rootUri": "file:///Users/nini/.pub-cache/hosted/pub.dev/meta-1.9.1",
-=======
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -165,7 +160,6 @@
     {
       "name": "path",
       "rootUri": "file:///Users/nini/.pub-cache/hosted/pub.dev/path-1.8.3",
-=======
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -326,9 +320,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-23T13:44:46.894095Z",
-=======
-  "generated": "2023-06-23T07:42:10.806139Z",
+  "generated": "2023-06-23T13:57:46.637417Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }
