@@ -15,7 +15,7 @@ const Mapbox = () => {
         zoom: 9.7,
       }}
       style={{ width: 800, height: 500, borderRadius: 10 }}
-      mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
+      mapStyle="mapbox://styles/mapbox/dark-v9"
       mapboxAccessToken="pk.eyJ1IjoiZHlhcnkwMTciLCJhIjoiY2wxaDhtams2MGJrcTNqbjJ5N2s2bTh5diJ9.cidFRjA1obU6y8MoJTy3RA"
     />
   );
