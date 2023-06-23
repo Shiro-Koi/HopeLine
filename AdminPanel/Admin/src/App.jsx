@@ -8,13 +8,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "mapbox-gl/dist/mapbox-gl.css";
+import FrequentlyAskedQuestions from "./pages/FrequentlyAskedQuestions";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<SharedPage />}>
       <Route index element={<Home />} />
-      {/* <Route path="/About" element={<AboutUsPage />} />
-      <Route path="/Contact" element={<ContactUs />} /> */}
+      <Route path="/questions" element={<FrequentlyAskedQuestions />} />
     </Route>
   )
 );
