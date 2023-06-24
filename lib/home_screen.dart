@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // app bar button to reset the saved data (from full_data.json and lite_data.json)
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'Be Safe~',
           style: TextStyle(
