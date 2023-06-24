@@ -45,7 +45,7 @@ class InitialScreen extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Lite Setup',
+                    'Anonymous SignUp',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -68,7 +68,7 @@ class InitialScreen extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Full Setup',
+                    'SignUp with Credentials',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
