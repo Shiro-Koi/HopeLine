@@ -108,9 +108,10 @@ class _LiteSetupState extends State<LiteSetup> {
 
   // function to navigate to the home screen
   void navigateToHomeScreen() {
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const HomeScreen()),
+      (Route<dynamic> route) => false,
     );
   }
 
@@ -118,94 +119,96 @@ class _LiteSetupState extends State<LiteSetup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.start, // Align to the top of the screen
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 40), // Increased space from the top
-            const Text(
-              'Lite Setup',
-              style: TextStyle(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Image.asset(
-              'images/lite_setup_icon.png',
-              height: 150,
-              width: 150,
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 300,
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Phone Number',
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment:
+                MainAxisAlignment.start, // Align to the top of the screen
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 40), // Increased space from the top
+              const Text(
+                'Anonymous Sign Up',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
                 ),
-                onChanged: (text) {
-                  updatePhoneNumber(text);
-                },
               ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 300,
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Emergency Contact 1',
+              const SizedBox(height: 20),
+              Image.asset(
+                'images/lite_setup_icon.png',
+                height: 150,
+                width: 150,
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Phone Number',
+                  ),
+                  onChanged: (text) {
+                    updatePhoneNumber(text);
+                  },
                 ),
-                onChanged: (text) {
-                  updateEmergencyContact1(text);
-                },
               ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 300,
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Emergency Contact 2',
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Emergency Contact 1',
+                  ),
+                  onChanged: (text) {
+                    updateEmergencyContact1(text);
+                  },
                 ),
-                onChanged: (text) {
-                  updateEmergencyContact2(text);
-                },
               ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 200,
-              height: 60,
-              child: Builder(
-                builder: (BuildContext buttonContext) {
-                  return ElevatedButton(
-                    onPressed: isLoading
-                        ? null
-                        : () {
-                            saveDataToJson(buttonContext);
-                          },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Emergency Contact 2',
+                  ),
+                  onChanged: (text) {
+                    updateEmergencyContact2(text);
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 200,
+                height: 60,
+                child: Builder(
+                  builder: (BuildContext buttonContext) {
+                    return ElevatedButton(
+                      onPressed: isLoading
+                          ? null
+                          : () {
+                              saveDataToJson(buttonContext);
+                            },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                    ),
-                    child: isLoading
-                        ? const CircularProgressIndicator()
-                        : const Text(
-                            'Submit',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                  );
-                },
+                      child: isLoading
+                          ? const CircularProgressIndicator()
+                          : const Text(
+                              'Submit',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

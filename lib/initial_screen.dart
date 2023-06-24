@@ -30,7 +30,7 @@ class InitialScreen extends StatelessWidget {
               const SizedBox(height: 20),
               SizedBox(
                 height: 60,
-                width: 200,
+                width: 230,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -45,7 +45,7 @@ class InitialScreen extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Anonymous SignUp',
+                    'Anonymous Sign Up',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -53,7 +53,7 @@ class InitialScreen extends StatelessWidget {
               const SizedBox(height: 20),
               SizedBox(
                 height: 60,
-                width: 200,
+                width: 230,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -68,7 +68,7 @@ class InitialScreen extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'SignUp with Credentials',
+                    'Sign Up with Credentials',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),

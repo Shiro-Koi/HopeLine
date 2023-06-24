@@ -20,7 +20,6 @@ class FullSetup extends StatefulWidget {
 class _FullSetupState extends State<FullSetup> {
   // variables to store the name, email, phone number, and emergency contacts
   String name = '';
-  String email = '';
   String phoneNumber = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
@@ -31,13 +30,6 @@ class _FullSetupState extends State<FullSetup> {
   void updateName(String newName) {
     setState(() {
       name = newName;
-    });
-  }
-
-  // function to update the email
-  void updateEmail(String newEmail) {
-    setState(() {
-      email = newEmail;
     });
   }
 
@@ -77,7 +69,6 @@ class _FullSetupState extends State<FullSetup> {
 
     Map<String, dynamic> data = {
       'name': name,
-      'email': email,
       'phoneNumber': phoneNumber,
       'emergencyContact1': emergencyContact1,
       'emergencyContact2': emergencyContact2,
@@ -97,7 +88,7 @@ class _FullSetupState extends State<FullSetup> {
 
       // Show loading screen for 5 seconds
       await Future.delayed(const Duration(seconds: 5));
-      
+
       showDialog(
         context: _dialogKey.currentContext ?? context,
         builder: (BuildContext dialogContext) {
@@ -141,11 +132,12 @@ class _FullSetupState extends State<FullSetup> {
     }
   }
 
-    // function to navigate to the home screen
+  // function to navigate to the home screen
   void navigateToHomeScreen() {
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
+      MaterialPageRoute(builder: (context) => const HomeScreen()), 
+      (Route<dynamic> route) => false,
     );
   }
 
@@ -160,120 +152,112 @@ class _FullSetupState extends State<FullSetup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        alignment: Alignment.center,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Full Setup',
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Image.asset(
-                'images/full_setup_icon.png',
-                height: 150,
-                width: 150,
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Name',
+      body: SingleChildScrollView(
+        // smooth scrolling
+        physics: AlwaysScrollableScrollPhysics(),
+        child: Container(
+          alignment: Alignment.center,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 20),
+                const Text(
+                  'Sign Up with Credentials',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
                   ),
-                  onChanged: (text) {
-                    updateName(text);
-                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
+                const SizedBox(height: 20),
+                Image.asset(
+                  'images/full_setup_icon.png',
+                  height: 150,
+                  width: 150,
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
+                    ),
+                    onChanged: (text) {
+                      updateName(text);
+                    },
                   ),
-                  onChanged: (text) {
-                    updateEmail(text);
-                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Phone Number',
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Phone Number',
+                    ),
+                    onChanged: (text) {
+                      updatePhoneNumber(text);
+                    },
                   ),
-                  onChanged: (text) {
-                    updatePhoneNumber(text);
-                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-              // text field to enter the first emergency contact
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Emergency Contact 1',
+                const SizedBox(height: 20),
+                // text field to enter the first emergency contact
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Emergency Contact 1',
+                    ),
+                    onChanged: (text) {
+                      updateEmergencyContact1(text);
+                    },
                   ),
-                  onChanged: (text) {
-                    updateEmergencyContact1(text);
-                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-              // text field to enter the second emergency contact
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Emergency Contact 2',
+                const SizedBox(height: 20),
+                // text field to enter the second emergency contact
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Emergency Contact 2',
+                    ),
+                    onChanged: (text) {
+                      updateEmergencyContact2(text);
+                    },
                   ),
-                  onChanged: (text) {
-                    updateEmergencyContact2(text);
-                  },
                 ),
-              ),
-              SizedBox(
-                width: 200,
-                height: 60,
-                child: Builder(
-                  builder: (BuildContext buttonContext) {
-                    return ElevatedButton(
-                      onPressed: isLoading
-                          ? null
-                          : () {
-                              saveDataToJson(buttonContext);
-                            },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 200,
+                  height: 60,
+                  child: Builder(
+                    builder: (BuildContext buttonContext) {
+                      return ElevatedButton(
+                        onPressed: isLoading
+                            ? null
+                            : () {
+                                saveDataToJson(buttonContext);
+                              },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
-                      ),
-                      child: isLoading
-                          ? const CircularProgressIndicator()
-                          : const Text(
-                              'Submit',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                    );
-                  },
+                        child: isLoading
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                                'Submit',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
