@@ -4,10 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>tel</string>
-	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Hope Line</string>
 	<key>CFBundleExecutable</key>
