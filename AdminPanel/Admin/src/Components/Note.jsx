@@ -70,7 +70,7 @@ const ComponentA = () => {
   return array.map((item, index) => (
     <div
       key={index}
-      className="bg-bg-secondary w-[250px] p-5 h-[40vh] rounded-xl text-black m-5  shadow-xl shadow-black "
+      className="bg-bg-secondary w-[250px] p-5 h-[40vh] rounded-xl flex justify-center text-black my-5   shadow-xl shadow-black "
     >
       <h1
         key={index}
