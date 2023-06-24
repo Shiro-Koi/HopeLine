@@ -16,6 +16,7 @@ class _LiteSetupState extends State<LiteSetup> {
   String phoneNumber = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
+  String noteToEmergencyContacts = '';
   final GlobalKey<State> _dialogKey = GlobalKey<State>();
   bool isLoading = false;
 
@@ -37,6 +38,13 @@ class _LiteSetupState extends State<LiteSetup> {
     });
   }
 
+  // function to update the note to be sent to the emergency contacts
+  void updateNoteToEmergencyContacts(String newNoteToEmergencyContacts) {
+    setState(() {
+      noteToEmergencyContacts = newNoteToEmergencyContacts;
+    });
+  }
+
   void saveDataToJson(BuildContext context) async {
     setState(() {
       isLoading = true;
@@ -46,6 +54,7 @@ class _LiteSetupState extends State<LiteSetup> {
       'phoneNumber': phoneNumber,
       'emergencyContact1': emergencyContact1,
       'emergencyContact2': emergencyContact2,
+      'noteToEmergencyContacts': noteToEmergencyContacts,
     };
 
     try {
@@ -145,6 +154,8 @@ class _LiteSetupState extends State<LiteSetup> {
               SizedBox(
                 width: 300,
                 child: TextField(
+                  //only accept numbers
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Phone Number',
@@ -158,6 +169,8 @@ class _LiteSetupState extends State<LiteSetup> {
               SizedBox(
                 width: 300,
                 child: TextField(
+                  //only accept numbers
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Emergency Contact 1',
@@ -171,12 +184,28 @@ class _LiteSetupState extends State<LiteSetup> {
               SizedBox(
                 width: 300,
                 child: TextField(
+                  //only accept numbers
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Emergency Contact 2',
                   ),
                   onChanged: (text) {
                     updateEmergencyContact2(text);
+                  },
+                ),
+              ),
+              // text field to enter the note to be sent to the emergency contacts
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Note to Emergency Contacts',
+                  ),
+                  onChanged: (text) {
+                    updateNoteToEmergencyContacts(text);
                   },
                 ),
               ),
@@ -207,6 +236,7 @@ class _LiteSetupState extends State<LiteSetup> {
                   },
                 ),
               ),
+              const SizedBox(height: 20)
             ],
           ),
         ),
