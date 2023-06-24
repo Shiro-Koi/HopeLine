@@ -1,10 +1,18 @@
 // basic immediate help screen
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sms/flutter_sms.dart';
+import 'dart:convert';
+import 'dart:io';
+// path provider
+import 'package:path_provider/path_provider.dart';
 
 class ImmediateHelp extends StatelessWidget {
   ImmediateHelp({Key? key}) : super(key: key);
   
+  void sendSMS(BuildContext context) async {
+    //TODO: add the message to be sent to the emergency contacts
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +21,6 @@ class ImmediateHelp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             Image.asset("images/checkmark.png", height: 150, width: 150),
             const SizedBox(height: 20),
             Container(
