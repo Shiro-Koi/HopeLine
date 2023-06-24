@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hope_line/applicationConstants.dart';
 import 'package:hope_line/initial_screen.dart';
 import 'package:hope_line/home_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
