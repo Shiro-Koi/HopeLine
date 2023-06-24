@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Map, {
   Marker,
-  Popup,
   NavigationControl,
   FullscreenControl,
   ScaleControl,
@@ -16,6 +15,22 @@ import Map, {
 import { db } from "./Firebase";
 import { onValue, ref } from "firebase/database";
 
+function getMarkers(data) {
+  if (data == null || data == undefined) return [];
+  let keys = Object.keys(data);
+  let result = Array(keys.length);
+  for (let i = 0; i < keys.length; i++) {
+    var d = data[keys[i]];
+    result[i] = (
+      <Marker
+        longitude={d.longitude}
+        latitude={d.latitude}
+        color="red"
+      ></Marker>
+    );
+  }
+  return result.map((v) => v);
+}
 const Mapbox = () => {
   let [data, setData] = useState({});
   useEffect(() => {
@@ -39,8 +54,15 @@ const Mapbox = () => {
       onClick={(e) => {
         e.originalEvent.stopPropagation();
       }}
-      style={{ width: 800, height: 500, borderRadius: 10 }}
-      mapStyle="mapbox://styles/mapbox/dark-v9"
+      style={{
+        width: 1000,
+        height: 500,
+        borderRadius: 10,
+        borderColor: "blue",
+        borderStyle: "solid",
+        borderWidth: "thin",
+      }}
+      mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken="pk.eyJ1IjoiZHlhcnkwMTciLCJhIjoiY2wxaDhtams2MGJrcTNqbjJ5N2s2bTh5diJ9.cidFRjA1obU6y8MoJTy3RA"
     >
       <GeolocateControl position="top-left" />
@@ -50,22 +72,5 @@ const Mapbox = () => {
       {getMarkers(data.info)}
     </Map>
   );
-
-  function getMarkers(data) {
-    if (data == null || data == undefined) return [];
-    let keys = Object.keys(data);
-    let result = Array(keys.length);
-    for (let i = 0; i < keys.length; i++) {
-      var d = data[keys[i]];
-      result[i] = (
-        <Marker
-          longitude={d.longitude}
-          latitude={d.latitude}
-          color="red"
-        ></Marker>
-      );
-    }
-    return result.map((v) => v);
-  }
 };
 export default Mapbox;
