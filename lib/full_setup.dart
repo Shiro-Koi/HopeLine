@@ -285,6 +285,7 @@ class _FullSetupState extends State<FullSetup> {
                     },
                   ),
                 ),
+                const SizedBox(height: 20),
               ],
             ),
           ),

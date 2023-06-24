@@ -51,6 +51,7 @@ class _HopeLineState extends State<HopeLine> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'HopeLine',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,

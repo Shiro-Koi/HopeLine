@@ -24,25 +24,35 @@ class CallHelp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Call for Help'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.asset(
+              'images/helper_icon.png',
+              height: 150,
+              width: 150,
+            ),
             const SizedBox(height: 20),
             const Text(
-              'Call for Help',
+              'We are here for you.',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'If you are in immediate danger, please call the help line number.',
-              style: TextStyle(
-                fontSize: 18,
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: const Text(
+                'If you are not in immediate danger, but need to talk to someone, call the HopeLine number.',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 20),
@@ -58,12 +68,12 @@ class CallHelp extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  backgroundColor: Colors.deepPurple,
+                  backgroundColor: Color.fromARGB(255, 26, 226, 79),
                 ),
                 child: const Text(
                   'Call',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
