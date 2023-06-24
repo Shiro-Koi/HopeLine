@@ -23,6 +23,7 @@ class _FullSetupState extends State<FullSetup> {
   String phoneNumber = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
+  String noteToEmergencyContacts = '';
   final GlobalKey<State> _dialogKey = GlobalKey<State>();
   bool isLoading = false;
 
@@ -54,6 +55,13 @@ class _FullSetupState extends State<FullSetup> {
     });
   }
 
+  // function to update the note to be sent to the emergency contacts
+  void updateNoteToEmergencyContacts(String newNoteToEmergencyContacts) {
+    setState(() {
+      noteToEmergencyContacts = newNoteToEmergencyContacts;
+    });
+  }
+
   // function to navigate to the initial screen
   void navigateToInitialScreen() {
     Navigator.push(
@@ -72,6 +80,7 @@ class _FullSetupState extends State<FullSetup> {
       'phoneNumber': phoneNumber,
       'emergencyContact1': emergencyContact1,
       'emergencyContact2': emergencyContact2,
+      'noteToEmergencyContacts': noteToEmergencyContacts,
     };
 
     try {
@@ -136,7 +145,7 @@ class _FullSetupState extends State<FullSetup> {
   void navigateToHomeScreen() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()), 
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
       (Route<dynamic> route) => false,
     );
   }
@@ -192,6 +201,8 @@ class _FullSetupState extends State<FullSetup> {
                 SizedBox(
                   width: 300,
                   child: TextField(
+                    //only accept numbers
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Phone Number',
@@ -206,6 +217,8 @@ class _FullSetupState extends State<FullSetup> {
                 SizedBox(
                   width: 300,
                   child: TextField(
+                    //only accept numbers
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Emergency Contact 1',
@@ -220,12 +233,28 @@ class _FullSetupState extends State<FullSetup> {
                 SizedBox(
                   width: 300,
                   child: TextField(
+                    //only accept numbers
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Emergency Contact 2',
                     ),
                     onChanged: (text) {
                       updateEmergencyContact2(text);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+                // text field to enter the note to be sent to the emergency contacts
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Note to Emergency Contacts',
+                    ),
+                    onChanged: (text) {
+                      updateNoteToEmergencyContacts(text);
                     },
                   ),
                 ),
