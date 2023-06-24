@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hope_line/immediate_help.dart';
 import 'package:hope_line/call_help.dart';
 import 'package:hope_line/applicationConstants.dart';
+import 'package:hope_line/shelter_map.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -49,6 +50,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // function to navigate to a map screen for shelter locations
+  void navigateToShelterMap(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ShelterMap()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +87,37 @@ class HomeScreen extends StatelessWidget {
               child: SizedBox(
                 height: 100,
                 width: 240,
-                //set button color to navy
+                child: ElevatedButton(
+                  onPressed: () => navigateToCallHelp(context),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      backgroundColor: Color.fromARGB(255, 26, 226, 79)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/call_icon.png',
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 10),
+                      const Text(
+                        'Call for Help',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 110),
+            Center(
+              child: SizedBox(
+                height: 100,
+                width: 240,
                 child: ElevatedButton(
                   onPressed: () => navigateToImmediateHelp(context),
                   style: ElevatedButton.styleFrom(
@@ -105,34 +144,30 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            // Find Shelter button
             const SizedBox(height: 110),
             Center(
               child: SizedBox(
                 height: 100,
                 width: 240,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const CallHelp()),
-                    );
-                  },
+                  onPressed: () => navigateToShelterMap(context),
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      backgroundColor: Color.fromARGB(255, 26, 226, 79)),
+                      backgroundColor: Color.fromARGB(255, 46, 142, 232)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Image.asset(
-                        'images/call_icon.png',
+                        'images/shelter_icon.png',
                         height: 40,
                         width: 40,
                       ),
                       const SizedBox(width: 10),
                       const Text(
-                        'Call for Help',
+                        'Find Shelter',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -141,7 +176,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 100),
           ],
         ),
       ),
