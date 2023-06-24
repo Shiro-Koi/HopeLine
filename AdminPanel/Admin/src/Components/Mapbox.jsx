@@ -39,7 +39,14 @@ const Mapbox = () => {
       onClick={(e) => {
         e.originalEvent.stopPropagation();
       }}
-      style={{ width: 800, height: 500, borderRadius: 10 }}
+      style={{
+        width: 1000,
+        height: 500,
+        borderRadius: 10,
+        borderColor: "blue",
+        borderStyle: "solid",
+        borderWidth: "thin",
+      }}
       mapStyle="mapbox://styles/mapbox/dark-v9"
       mapboxAccessToken="pk.eyJ1IjoiZHlhcnkwMTciLCJhIjoiY2wxaDhtams2MGJrcTNqbjJ5N2s2bTh5diJ9.cidFRjA1obU6y8MoJTy3RA"
     >
